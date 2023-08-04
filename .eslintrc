@@ -1,0 +1,8 @@
+{
+  "extends": ["@nuxtjs/eslint-config-typescript", "plugin:tailwindcss/recommended", "plugin:unicorn/all"],
+  "rules": {
+    "unicorn/expiring-todo-comments": "off",
+    "unicorn/no-unsafe-regex": "off",
+    "unicorn/no-keyword-prefix": "off"
+  }
+}

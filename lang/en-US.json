@@ -1,0 +1,9 @@
+{
+  "common": {
+    "app": {
+      "name": "UpScore",
+      "author": "Ondřej Misák"
+    },
+    "loading": "Loading"
+  }
+}
