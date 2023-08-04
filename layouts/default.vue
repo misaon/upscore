@@ -1,124 +1,133 @@
 <template>
-  <div class="h-full flex flex-col gap-4 bg-base-200">
+  <div class="flex h-full flex-col gap-4 bg-base-200">
+    <Notify />
+
     <header class="navbar bg-base-100">
       <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl gap-0">
+        <NuxtLink to="/" class="btn btn-ghost gap-0 text-xl normal-case">
           <Icon name="line-md:chevron-triple-up" />
           {{ $t('common.app.name') }}
-        </a>
+        </NuxtLink>
       </div>
-      <div class="flex-none flex gap-3">
-        <div class="dropdown dropdown-end">
-          <label tabindex="0" class="btn btn-ghost btn-circle">
+      <div class="flex flex-none gap-3">
+        <!-- eslint-disable-next-line tailwindcss/classnames-order -->
+        <div class="dropdown-end dropdown">
+          <label tabindex="0" class="btn btn-circle btn-ghost">
             <div class="indicator">
-              <Icon name="line-md:bell" class="fill-current w-7 h-7" />
-              <span class="badge badge-sm indicator-item bg-info">8</span>
+              <Icon name="line-md:bell" class="h-7 w-7 fill-current" />
+              <span class="badge indicator-item badge-sm bg-info">8</span>
             </div>
           </label>
-          <div tabindex="0" class="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
+          <div
+            tabindex="0"
+            class="card dropdown-content card-compact z-[1] mt-3 w-52 bg-base-100 shadow"
+          >
             <div class="card-body">
               <div class="card-actions">
-                <button class="btn btn-primary text-white btn-block btn-sm">
-                  Zobrazit všechny
-                </button>
+                <NuxtLink to="/alarms" class="btn-primary btn btn-sm btn-block">
+                  {{ $t('notification.showAll') }}
+                </NuxtLink>
               </div>
             </div>
           </div>
         </div>
 
-        <label v-once class="swap swap-rotate btn btn-ghost btn-circle">
-          <input type="checkbox" @change="handleThemeSwitch">
-          <Icon name="line-md:moon-loop" class="fill-current w-7 h-7" :class="[colorMode.value === 'light' ? 'swap-off' : 'swap-on']" />
-          <Icon name="line-md:sunny-outline-loop" class="fill-current w-7 h-7" :class="[colorMode.value === 'light' ? 'swap-on' : 'swap-off']" />
+        <label v-once class="btn btn-circle btn-ghost swap swap-rotate">
+          <input type="checkbox" @change="handleThemeSwitch" />
+          <Icon
+            name="line-md:moon-loop"
+            class="h-7 w-7 fill-current"
+            :class="[colorMode.value === 'light' ? 'swap-off' : 'swap-on']"
+          />
+          <Icon
+            name="line-md:sunny-outline-loop"
+            class="h-7 w-7 fill-current"
+            :class="[colorMode.value === 'light' ? 'swap-on' : 'swap-off']"
+          />
         </label>
 
-        <div class="dropdown dropdown-end">
-          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+        <div class="dropdown-end dropdown">
+          <label tabindex="0" class="avatar btn btn-circle btn-ghost">
             <div class="w-10 rounded-full">
-              <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50">
+              <img
+                src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
+                alt="avatar"
+              />
             </div>
           </label>
-          <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-base-100 shadow rounded-box w-52">
+          <ul
+            tabindex="0"
+            class="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
+          >
             <li>
-              <a class="justify-between">
-                Profile
-                <span class="badge">New</span>
-              </a>
+              <NuxtLink to="/profile" class="justify-between">
+                {{ $t('account.profile') }}
+                <span class="badge">{{ $t('badge.new') }}</span>
+              </NuxtLink>
             </li>
-            <li><a>Settings</a></li>
-            <li><a>Logout</a></li>
+            <li>
+              <NuxtLink to="/settings">
+                {{ $t('account.settings') }}
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/logout">
+                {{ $t('account.logout') }}
+              </NuxtLink>
+            </li>
           </ul>
         </div>
       </div>
     </header>
 
-    <main class="flex gap-4 flex-grow px-4">
+    <main class="flex grow gap-4 px-4">
       <nav class="flex flex-col gap-4">
-        <ul class="flex-grow menu bg-base-100 w-56 rounded-box">
+        <ul class="menu rounded-box w-56 grow bg-base-100">
           <li>
-            <a class="px-3">
+            <NuxtLink to="/" class="px-3" data-cy="navigation__dashboard">
               <Icon name="line-md:home-simple" class="h-5 w-5" />
-              Přehled
-            </a>
+              {{ $t('navigation.dashboard') }}
+            </NuxtLink>
           </li>
           <li>
-            <a class="px-3">
+            <NuxtLink
+              to="/monitored-resources"
+              class="px-3"
+              data-cy="navigation__monitored-resources"
+            >
               <Icon name="line-md:list" class="h-5 w-5" />
-              Hlídané položky
-            </a>
+              {{ $t('navigation.monitoredResources') }}
+            </NuxtLink>
           </li>
           <li>
-            <a class="px-3">
+            <NuxtLink to="/alarms" class="px-3" data-cy="navigation__alarms">
               <Icon name="line-md:bell" class="h-5 w-5" />
-              Alarmy
-            </a>
+              {{ $t('navigation.alarms') }}
+            </NuxtLink>
           </li>
         </ul>
 
-        <ul class="menu bg-base-100 w-56 rounded-box">
-          <li>
-            <a class="px-2">
+        <ul class="menu rounded-box w-56 bg-base-100">
+          <li v-for="monitoredResource in monitoredResources" :key="monitoredResource.url">
+            <NuxtLink :to="`/monitored-resources/${monitoredResource.uuid}`" class="px-2">
               <Icon name="line-md:chevron-small-double-right" class="h-5 w-5" />
-              Položka 1
-            </a>
-          </li>
-          <li>
-            <a class="px-2">
-              <Icon name="line-md:chevron-small-double-right" class="h-5 w-5" />
-              Položka 2
-            </a>
-          </li>
-          <li>
-            <a class="px-2">
-              <Icon name="line-md:chevron-small-double-right" class="h-5 w-5" />
-              Položka 3
-            </a>
-          </li>
-          <li>
-            <a class="px-2">
-              <Icon name="line-md:chevron-small-double-right" class="h-5 w-5" />
-              Položka 4
-            </a>
-          </li>
-          <li>
-            <a class="px-2">
-              <Icon name="line-md:chevron-small-double-right" class="h-5 w-5" />
-              Položka 5
-            </a>
+              {{ monitoredResource.url }}
+            </NuxtLink>
           </li>
         </ul>
       </nav>
 
-      <div class="flex-grow">
+      <div class="grow">
         <slot />
       </div>
     </main>
 
-    <footer class="footer items-center p-4 bg-base-100">
-      <div class="items-center grid-flow-col">
+    <footer class="footer items-center bg-base-100 p-4">
+      <div class="grid-flow-col items-center">
         <p>
           <Icon name="line-md:chevron-triple-up" />
-          <b>{{ $t('common.app.name') }}</b> by {{ $t('common.app.author') }} © 2023 - All right reserved
+          <b>{{ $t('common.app.name') }}</b> {{ $t('common.by') }} {{ $t('common.app.author') }} ©
+          {{ new Date().getFullYear() }} - {{ $t('common.allRightReserved') }}
         </p>
       </div>
     </footer>
@@ -126,9 +135,14 @@
 </template>
 
 <script lang="ts" setup>
-const colorMode = useColorMode()
+import { storeToRefs } from 'pinia';
+import { useMonitoredResourcesStore } from '~/stores/monitored-resources';
 
+const colorMode = useColorMode();
 const handleThemeSwitch = () => {
-  colorMode.preference = colorMode.preference === 'light' ? 'dark' : 'light'
-}
+  colorMode.preference = colorMode.preference === 'light' ? 'dark' : 'light';
+};
+
+const store = useMonitoredResourcesStore();
+const { monitoredResources } = storeToRefs(store);
 </script>

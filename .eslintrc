@@ -1,8 +1,29 @@
 {
-  "extends": ["@nuxtjs/eslint-config-typescript", "plugin:tailwindcss/recommended", "plugin:unicorn/all"],
+  "extends": [
+    "@nuxtjs/eslint-config-typescript",
+    "plugin:tailwindcss/recommended",
+    "plugin:unicorn/all",
+    "plugin:prettier/recommended"
+  ],
   "rules": {
     "unicorn/expiring-todo-comments": "off",
     "unicorn/no-unsafe-regex": "off",
-    "unicorn/no-keyword-prefix": "off"
-  }
+    "unicorn/no-keyword-prefix": "off",
+    "unicorn/text-encoding-identifier-case": "off",
+    "unicorn/no-array-method-this-argument": "off",
+    "vue/multi-word-component-names": "off"
+  },
+  "overrides": [
+    {
+      "files": ["server/database/entity/*.ts"],
+      "rules": {
+        "unicorn/filename-case": [
+          "error",
+          {
+            "case": "pascalCase"
+          }
+        ]
+      }
+    }
+  ]
 }

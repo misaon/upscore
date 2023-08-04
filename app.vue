@@ -5,5 +5,10 @@
 </template>
 
 <script lang="ts" setup>
-const { status, data } = useEventSource('/api/sse')
+import { useMonitoredResourcesStore } from '~/stores/monitored-resources';
+
+const store = useMonitoredResourcesStore();
+await store.fetchMonitoredResources();
+
+// const { status, data } = useEventSource('/api/sse');
 </script>

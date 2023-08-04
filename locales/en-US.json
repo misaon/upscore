@@ -1,0 +1,36 @@
+{
+  "common": {
+    "app": {
+      "name": "UpScore",
+      "author": "Ondřej Misák"
+    },
+    "loading": "Loading",
+    "by": "by",
+    "allRightReserved": "All right reserved"
+  },
+  "badge": {
+    "new": "New"
+  },
+  "notification": {
+    "showAll": "Show all",
+    "success": {
+      "entityCreated": "{entity} was successfully created"
+    },
+    "error": {
+      "some": "An error occurred!"
+    }
+  },
+  "account": {
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Log out"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "monitoredResources": "Monitored resources",
+    "alarms": "Alarms"
+  },
+  "entity": {
+    "monitoredResource": "Monitored resource"
+  }
+}

@@ -1,21 +1,24 @@
-import type { Config } from 'tailwindcss'
-import defaultTheme from 'tailwindcss/defaultTheme'
-import daisyUi from 'daisyui'
+import type { Config } from 'tailwindcss';
+import defaultTheme from 'tailwindcss/defaultTheme';
+import daisyUi from 'daisyui';
+import formKitVariants from '@formkit/themes/tailwindcss';
 
 export default <Partial<Config>>{
+  content: ['./assets/tailwind-theme.ts'],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Open Sans"', ...defaultTheme.fontFamily.sans]
+        sans: ['"Open Sans"', ...defaultTheme.fontFamily.sans],
       },
     },
     container: {
       center: true,
-      padding: '2rem'
+      padding: '2rem',
     },
-    darkMode: 'class'
+    darkMode: 'class',
   },
   daisyui: {
+    logs: false,
     themes: [
       {
         light: {
@@ -27,7 +30,10 @@ export default <Partial<Config>>{
           info: '#64b5f6',
           success: '#aed581',
           warning: '#ffb74d',
-          error: '#e57373'
+          error: '#e57373',
+          '.btn-primary': {
+            color: '#ffffff',
+          },
         },
         dark: {
           primary: '#0EA5E9',
@@ -38,10 +44,10 @@ export default <Partial<Config>>{
           info: '#1565c0',
           success: '#558b2f',
           warning: '#ef6c00',
-          error: '#c62828'
-        }
-      }
-    ]
+          error: '#c62828',
+        },
+      },
+    ],
   },
-  plugins: [daisyUi]
-}
+  plugins: [daisyUi, formKitVariants],
+};
