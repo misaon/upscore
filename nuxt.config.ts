@@ -56,6 +56,11 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
     },
   },
+  hooks: {
+    'nitro:build:before': (nitro) => {
+      nitro.options.moduleSideEffects.push('reflect-metadata');
+    },
+  },
   pinia: {
     autoImports: ['defineStore', 'acceptHMRUpdate'],
   },

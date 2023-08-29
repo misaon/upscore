@@ -1,10 +1,9 @@
-import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import { MonitoredResource } from './entity/MonitoredResource';
 
 const AppDataSource = new DataSource({
-  type: 'sqlite',
-  database: 'data/database.sqlite',
+  type: 'better-sqlite3',
+  database: 'data/database.db',
   synchronize: true,
   logging: false,
   entities: [MonitoredResource],
@@ -16,8 +15,6 @@ export const em = AppDataSource.manager;
 
 export const initialize = async () => {
   if (AppDataSource.isInitialized) {
-    // eslint-disable-next-line no-console
-    console.log('DB: Already initialized');
     return;
   }
 
@@ -29,7 +26,4 @@ export const initialize = async () => {
 
     throw error;
   }
-
-  // eslint-disable-next-line no-console
-  console.log('DB: Successfully initialized database connection');
 };

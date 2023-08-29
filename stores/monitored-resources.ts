@@ -11,12 +11,12 @@ export const useMonitoredResourcesStore = defineStore('monitored-resources', () 
 
   const monitoredResources: Ref<IMonitoredResource[]> = ref([]);
 
-  async function fetchMonitoredResources() {
+  const fetchMonitoredResources = async () => {
     const result = await useFetch('/api/monitored-resources');
     monitoredResources.value = result.data.value as unknown as IMonitoredResource[];
-  }
+  };
 
-  async function getMonitoredResource(uuid: string) {
+  const getMonitoredResource = async (uuid: string) => {
     const { data, error } = await useFetch(`/api/monitored-resources/${uuid}`);
 
     if (error.value) {
@@ -25,9 +25,9 @@ export const useMonitoredResourcesStore = defineStore('monitored-resources', () 
     }
 
     return data;
-  }
+  };
 
-  async function addMonitoredResource(formData: MonitoredResourcePostDto) {
+  const addMonitoredResource = async (formData: MonitoredResourcePostDto) => {
     const { data, error } = await useFetch('/api/monitored-resources', {
       method: 'POST',
       body: formData,
@@ -43,7 +43,7 @@ export const useMonitoredResourcesStore = defineStore('monitored-resources', () 
       'success'
     );
     monitoredResources.value.push(data.value as unknown as IMonitoredResource);
-  }
+  };
 
   return {
     monitoredResources,

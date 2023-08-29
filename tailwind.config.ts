@@ -4,7 +4,7 @@ import daisyUi from 'daisyui';
 import formKitVariants from '@formkit/themes/tailwindcss';
 
 export default <Partial<Config>>{
-  content: ['./assets/tailwind-theme.ts'],
+  content: ['./assets/formkit-theme.ts'],
   theme: {
     extend: {
       fontFamily: {

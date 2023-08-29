@@ -6,7 +6,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { generateUUIDBySQLite } from '~/server/database/utils/uuid';
+import { v4 as uuidV4 } from 'uuid';
 
 export interface IMonitoredResource {
   id: number;
@@ -24,9 +24,7 @@ export class MonitoredResource implements IMonitoredResource {
   id!: number;
 
   @Index()
-  @Column('uuid', {
-    default: () => generateUUIDBySQLite(),
-  })
+  @Column('uuid')
   uuid!: string;
 
   @Column({ unique: true })
@@ -43,4 +41,8 @@ export class MonitoredResource implements IMonitoredResource {
 
   @UpdateDateColumn()
   updateDate!: Date;
+
+  constructor() {
+    this.uuid = uuidV4();
+  }
 }

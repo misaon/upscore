@@ -1,4 +1,4 @@
-export default {
+export const tailwindTheme = {
   // Global styles apply to _all_ inputs with matching section keys
   global: {
     // fieldset: 'max-w-md border border-gray-400 rounded px-2 pb-1',
