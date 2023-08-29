@@ -1,3 +1,3 @@
-import { initialize } from '../database/data-source';
+import { initialize } from '../database/dataSource';
 
 export default defineNitroPlugin(() => initialize());

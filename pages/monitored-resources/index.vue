@@ -40,8 +40,8 @@
 </template>
 
 <script setup lang="ts">
-import { useMonitoredResourcesStore } from '~/stores/monitored-resources';
-import type { MonitoredResourcePostDto } from '~/server/dto/monitored-resource.post.dto';
+import { useMonitoredResourcesStore } from '~/stores/monitoredResources';
+import type { MonitoredResourcePostDto } from '~/server/dto/MonitoredResourceDto';
 
 const modal = ref();
 const submitPending = ref(false);

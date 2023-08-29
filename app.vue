@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useMonitoredResourcesStore } from '~/stores/monitored-resources';
+import { useMonitoredResourcesStore } from '~/stores/monitoredResources';
 
 const store = useMonitoredResourcesStore();
 await store.fetchMonitoredResources();

@@ -1,4 +1,4 @@
-import { em } from '../../database/data-source';
+import { em } from '../../database/dataSource';
 import { MonitoredResource } from '../../database/entity/MonitoredResource';
 
 export default defineEventHandler(async () => {

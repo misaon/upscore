@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { useMonitoredResourcesStore } from '~/stores/monitored-resources';
+import { useMonitoredResourcesStore } from '~/stores/monitoredResources';
 
 const { params } = useRoute();
 

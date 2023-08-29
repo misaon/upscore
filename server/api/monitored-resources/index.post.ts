@@ -1,7 +1,7 @@
 import { validate } from 'class-validator';
-import { em } from '../../database/data-source';
+import { em } from '../../database/dataSource';
 import { MonitoredResource } from '../../database/entity/MonitoredResource';
-import { MonitoredResourcePostDto } from '../../dto/monitored-resource.dto';
+import { MonitoredResourcePostDto } from '../../dto/MonitoredResourceDto';
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);

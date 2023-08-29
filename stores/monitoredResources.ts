@@ -3,9 +3,9 @@ import { ref } from 'vue';
 import type { Ref } from 'vue';
 import { useNotifyStore } from '~/stores/notify';
 import type { IMonitoredResource } from '~/server/database/entity/MonitoredResource';
-import type { MonitoredResourcePostDto } from '~/server/dto/monitored-resource.post.dto';
+import type { MonitoredResourcePostDto } from '~/server/dto/MonitoredResourceDto';
 
-export const useMonitoredResourcesStore = defineStore('monitored-resources', () => {
+export const useMonitoredResourcesStore = defineStore('monitoredResources', () => {
   const { t } = useI18n();
   const notifyStore = useNotifyStore();
 

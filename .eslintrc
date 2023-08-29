@@ -6,16 +6,31 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
-    "unicorn/expiring-todo-comments": "off",
-    "unicorn/no-unsafe-regex": "off",
-    "unicorn/no-keyword-prefix": "off",
-    "unicorn/text-encoding-identifier-case": "off",
-    "unicorn/no-array-method-this-argument": "off",
-    "vue/multi-word-component-names": "off"
+    "unicorn/expiring-todo-comments": "off", // prevent eslint crash
+    "unicorn/filename-case": [
+      "error",
+      {
+        "case": "camelCase"
+      }
+    ],
+    "unicorn/prevent-abbreviations": [
+      "error",
+      {
+        "allowList": {
+          "e2e": true
+        }
+      }
+    ]
   },
   "overrides": [
     {
-      "files": ["server/database/entity/*.ts"],
+      "files": ["cypress/e2e/*.cy.ts"],
+      "rules": {
+        "unicorn/no-empty-file": "off"
+      }
+    },
+    {
+      "files": ["server/database/entity/*.ts", "server/dto/*.ts"],
       "rules": {
         "unicorn/filename-case": [
           "error",
@@ -23,6 +38,13 @@
             "case": "pascalCase"
           }
         ]
+      }
+    },
+    {
+      "files": ["nuxt.config.ts"],
+      "rules": {
+        "unicorn/no-keyword-prefix": "off",
+        "unicorn/text-encoding-identifier-case": "off"
       }
     }
   ]

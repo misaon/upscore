@@ -1,1 +1,1 @@
-export default defineNitroPlugin((nitroApp) => {});
+export default defineNitroPlugin((_nitroApp) => {});

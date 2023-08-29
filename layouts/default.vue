@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-full flex-col gap-4 bg-base-200">
-    <Notify />
+    <NotifyCenter />
 
     <header class="navbar bg-base-100">
       <div class="flex-1">
@@ -136,7 +136,7 @@
 
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
-import { useMonitoredResourcesStore } from '~/stores/monitored-resources';
+import { useMonitoredResourcesStore } from '~/stores/monitoredResources';
 
 const colorMode = useColorMode();
 const handleThemeSwitch = () => {
