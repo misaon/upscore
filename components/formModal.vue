@@ -43,10 +43,6 @@ const properties = defineProps({
 });
 
 defineExpose({
-  closeModal: () => {
-    if (closeButton.value) {
-      closeButton.value.click();
-    }
-  },
+  closeModal: () => closeButton.value?.click(),
 });
 </script>

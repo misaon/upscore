@@ -1,3 +1,7 @@
+/**
+ * @see {@link https://formkit.com/guides/create-a-tailwind-theme#a-complete-tailwind-theme-recreating-genesis-css} for more information.
+ */
+
 export const tailwindTheme = {
   // Global styles apply to _all_ inputs with matching section keys
   global: {

@@ -32,9 +32,9 @@ export class MonitoredResourcePostDto
   @IsNumber()
   @Min(5)
   @Max(3600)
-  interval!: number;
+  interval?: number;
 
   @IsOptional()
   @IsBoolean()
-  isFavourite!: boolean;
+  isFavourite?: boolean;
 }

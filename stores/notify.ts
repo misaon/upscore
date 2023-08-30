@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia';
 import type { Ref } from 'vue';
 
 type NotificationType = 'success' | 'info' | 'warning' | 'error';

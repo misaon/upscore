@@ -2,12 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Make app full-height to enable vertical flexbox features */
 html,
 body,
 #__nuxt {
   @apply h-full;
 }
 
+/* Optional: Comment code bellow to display additional formkit errors summary */
 .formkit-form > .formkit-messages {
   @apply hidden;
 }

@@ -1,6 +1,6 @@
 import { Entity, Column } from 'typeorm';
-import { BaseEntity } from '~/server/entity/BaseEntity';
 import type { IMonitoredResource } from '~/server/types/IMonitoredResource';
+import { BaseEntity } from '~/server/entity/BaseEntity';
 
 @Entity()
 export class MonitoredResourceEntity extends BaseEntity implements IMonitoredResource {

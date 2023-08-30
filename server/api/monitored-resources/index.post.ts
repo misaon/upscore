@@ -1,23 +1,19 @@
-import { MonitoredResourceEntity } from '~/server/entity/MonitoredResourceEntity';
+import { useMonitoredResourceService } from '~/server/services/monitoredResourceService';
 import { MonitoredResourcePostDto } from '~/server/dto/MonitoredResourceDto';
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
+  const monitoredResourceService = useMonitoredResourceService();
 
-  const dtoErrors = await validateDto<MonitoredResourcePostDto>(MonitoredResourcePostDto, {
-    url: body.url,
-  });
+  const { dto, errors } = await validateDto<MonitoredResourcePostDto>(
+    MonitoredResourcePostDto,
+    body
+  );
 
-  if (dtoErrors) {
+  if (!dto) {
     setResponseStatus(event, 400);
-    return { message: dtoErrors };
+    return { message: errors };
   }
 
-  const resource = await em.insert(MonitoredResourceEntity, {
-    url: body.url,
-  });
-
-  return await em.findOneBy(MonitoredResourceEntity, {
-    id: resource.identifiers[0].id,
-  });
+  return monitoredResourceService.create(dto);
 });

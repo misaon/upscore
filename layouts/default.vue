@@ -135,7 +135,6 @@
 </template>
 
 <script lang="ts" setup>
-import { storeToRefs } from 'pinia';
 import { useMonitoredResourcesStore } from '~/stores/monitoredResources';
 
 const colorMode = useColorMode();

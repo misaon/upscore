@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import type { Ref } from 'vue';
 import { useNotifyStore } from '~/stores/notify';

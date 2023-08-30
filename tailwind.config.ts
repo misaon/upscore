@@ -1,7 +1,7 @@
-import type { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme';
 import daisyUi from 'daisyui';
 import formKitVariants from '@formkit/themes/tailwindcss';
+import type { Config } from 'tailwindcss';
 
 export default <Partial<Config>>{
   content: ['./assets/formkitTheme.ts'],

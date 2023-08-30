@@ -37,7 +37,6 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
 import { useNotifyStore } from '~/stores/notify';
 
 const store = useNotifyStore();
