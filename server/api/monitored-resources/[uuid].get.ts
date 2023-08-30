@@ -1,5 +1,4 @@
-import { em } from '../../database/dataSource';
-import { MonitoredResource } from '../../database/entity/MonitoredResource';
+import { MonitoredResourceEntity } from '~/server/entity/MonitoredResourceEntity';
 
 export default defineEventHandler(async (event) => {
   const uuid = event.context.params?.uuid as string;
@@ -7,7 +6,7 @@ export default defineEventHandler(async (event) => {
   try {
     setResponseStatus(event, 200);
 
-    return await em.findOneBy(MonitoredResource, {
+    return await em.findOneBy(MonitoredResourceEntity, {
       uuid,
     });
   } catch (error) {

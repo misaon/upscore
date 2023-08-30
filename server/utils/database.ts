@@ -1,25 +1,25 @@
 import { DataSource } from 'typeorm';
-import { MonitoredResource } from './entity/MonitoredResource';
+import { MonitoredResourceEntity } from '~/server/entity/MonitoredResourceEntity';
 
-const AppDataSource = new DataSource({
+export const dataSource = new DataSource({
   type: 'better-sqlite3',
   database: 'data/database.db',
   synchronize: true,
   logging: false,
-  entities: [MonitoredResource],
+  entities: [MonitoredResourceEntity],
   migrations: [],
   subscribers: [],
 });
 
-export const em = AppDataSource.manager;
+export const em = dataSource.manager;
 
-export const initialize = async () => {
-  if (AppDataSource.isInitialized) {
+export const initializeDataSource = async () => {
+  if (dataSource.isInitialized) {
     return;
   }
 
   try {
-    await AppDataSource.initialize();
+    await dataSource.initialize();
   } catch (error) {
     // eslint-disable-next-line no-console
     console.trace('DB: Failed to initialized database', error);

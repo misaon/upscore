@@ -1,6 +1,5 @@
-import { em } from '../../database/dataSource';
-import { MonitoredResource } from '../../database/entity/MonitoredResource';
+import { MonitoredResourceEntity } from '~/server/entity/MonitoredResourceEntity';
 
 export default defineEventHandler(async () => {
-  return await em.find(MonitoredResource);
+  return await em.find(MonitoredResourceEntity);
 });

@@ -15,7 +15,7 @@ export default defineNuxtConfig({
       // @ts-ignore
       plugins: [
         rollupPluginTs({
-          include: ['server/database/**/*.ts', 'server/dto/**/*.ts'],
+          include: ['server/entity/**/*.ts', 'server/dto/**/*.ts'],
           tsconfig: 'server/tsconfig.json',
         }),
       ],

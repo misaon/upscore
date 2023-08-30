@@ -18,7 +18,7 @@
               name="url"
               label="Resource url"
               help="Url to resource which you want monitor"
-              validation="required|url"
+              validation="required"
             />
           </div>
 

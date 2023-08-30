@@ -7,6 +7,7 @@
   ],
   "rules": {
     "unicorn/expiring-todo-comments": "off", // prevent eslint crash
+    "unicorn/no-null": "off",
     "unicorn/filename-case": [
       "error",
       {
@@ -30,7 +31,7 @@
       }
     },
     {
-      "files": ["server/database/entity/*.ts", "server/dto/*.ts"],
+      "files": ["server/entity/*.ts", "server/dto/*.ts", "server/types/*.ts"],
       "rules": {
         "unicorn/filename-case": [
           "error",

@@ -104,9 +104,6 @@ devDependencies:
   typescript:
     specifier: ^5.2.2
     version: 5.2.2
-  uuid:
-    specifier: ^9.0.0
-    version: 9.0.0
   vite-plugin-istanbul:
     specifier: ^5.0.0
     version: 5.0.0(vite@4.4.9)
@@ -2123,6 +2120,11 @@ packages:
 
   /@intlify/shared@9.3.0-beta.26:
     resolution: {integrity: sha512-RpCtfSYIg4tSskrazTr5+WCHyw6qpgwdIxC+x3nCnrPGxyk+en9FoSbadVfx/w7uDTdyhKslEw4d2+qhNc0s4Q==}
+    engines: {node: '>= 16'}
+    dev: true
+
+  /@intlify/shared@9.3.0-beta.27:
+    resolution: {integrity: sha512-hPMsmVCs+ZUVHHU5VORG6LopzXZT7zmyVNqc9OQG80YpA/N4lT/pkJ4B6DTNIsv2C7mwfGM7RdK+0qPki43YgA==}
     engines: {node: '>= 16'}
     dev: true
 
@@ -12571,7 +12573,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.26
+      '@intlify/shared': 9.3.0-beta.27
       '@intlify/vue-i18n-bridge': 0.8.0(vue-i18n@9.3.0-beta.26)
       '@intlify/vue-router-bridge': 0.8.0(vue@3.3.4)
       ufo: 1.3.0
