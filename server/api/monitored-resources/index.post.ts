@@ -1,5 +1,6 @@
 import { useMonitoredResourceService } from '~/server/services/monitoredResourceService';
 import { MonitoredResourcePostDto } from '~/server/dto/MonitoredResourceDto';
+import { DatabaseError, ERROR_UNIQUE } from '~/server/exceptions/DatabaseError';
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
@@ -11,9 +12,25 @@ export default defineEventHandler(async (event) => {
   );
 
   if (!dto) {
-    setResponseStatus(event, 400);
-    return { message: errors };
+    throw createError({
+      statusCode: 400,
+      message: errors!.join(', '),
+    });
   }
 
-  return monitoredResourceService.create(dto);
+  try {
+    return await monitoredResourceService.create(dto);
+  } catch (error: unknown) {
+    if (error instanceof DatabaseError && error.code === ERROR_UNIQUE) {
+      throw createError({
+        statusCode: 409,
+        message: error.message,
+      });
+    }
+
+    throw createError({
+      statusCode: 500,
+      message: `Unknown error occurred`,
+    });
+  }
 });

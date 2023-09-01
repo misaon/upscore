@@ -31,7 +31,7 @@
       }
     },
     {
-      "files": ["server/entity/*.ts", "server/dto/*.ts", "server/types/*.ts"],
+      "files": ["server/entity/*.ts", "server/dto/*.ts", "server/types/*.ts",  "server/exceptions/*.ts"],
       "rules": {
         "unicorn/filename-case": [
           "error",
