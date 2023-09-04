@@ -1,12 +1,12 @@
 import { validate } from 'class-validator';
 
-type Constructor<T = {}> = new (...arguments_: any[]) => T;
+type Constructor<T> = new () => T;
 
-export const validateDto = async <T extends {}>(
+export const validateDto = async <T>(
   DtoClass: Constructor<T>,
   properties: Partial<T>
 ): Promise<{ dto?: T; errors?: string[] }> => {
-  const instance = Object.assign(new DtoClass(), properties);
+  const instance = { ...new DtoClass(), ...properties };
   const errors = await validate(instance);
 
   if (errors.length > 0) {
@@ -18,4 +18,20 @@ export const validateDto = async <T extends {}>(
   return {
     dto: instance,
   };
+};
+
+export const validateEventDto = async <T>(
+  DtoClass: Constructor<T>,
+  properties: Partial<T> | undefined
+): Promise<T> => {
+  const { dto, errors } = await validateDto<T>(DtoClass, properties || {});
+
+  if (!dto) {
+    throw createError({
+      statusCode: 400,
+      message: errors!.join(', '),
+    });
+  }
+
+  return dto;
 };

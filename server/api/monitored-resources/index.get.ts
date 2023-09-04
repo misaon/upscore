@@ -1,5 +1,7 @@
-import { MonitoredResourceEntity } from '~/server/entity/MonitoredResourceEntity';
+import { useMonitoredResourceService } from '~/server/services/monitoredResourceService';
 
 export default defineEventHandler(async () => {
-  return await em.find(MonitoredResourceEntity);
+  const monitoredResourceService = useMonitoredResourceService();
+
+  return await monitoredResourceService.getAll();
 });

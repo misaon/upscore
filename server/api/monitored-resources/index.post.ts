@@ -1,22 +1,13 @@
 import { useMonitoredResourceService } from '~/server/services/monitoredResourceService';
 import { MonitoredResourcePostDto } from '~/server/dto/MonitoredResourceDto';
 import { DatabaseError, ERROR_UNIQUE } from '~/server/exceptions/DatabaseError';
+import { validateEventDto } from '~/server/utils/dto';
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const monitoredResourceService = useMonitoredResourceService();
 
-  const { dto, errors } = await validateDto<MonitoredResourcePostDto>(
-    MonitoredResourcePostDto,
-    body
-  );
-
-  if (!dto) {
-    throw createError({
-      statusCode: 400,
-      message: errors!.join(', '),
-    });
-  }
+  const dto = await validateEventDto(MonitoredResourcePostDto, body);
 
   try {
     return await monitoredResourceService.create(dto);

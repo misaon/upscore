@@ -49,7 +49,7 @@ const submitPending = ref(false);
 const store = useMonitoredResourcesStore();
 const handleCreateResourceFormSubmit = async (formData: MonitoredResourcePostDto) => {
   submitPending.value = true;
-  await store.addMonitoredResource(formData);
+  await store.createMonitoredResource(formData);
   submitPending.value = false;
 
   modal.value.closeModal();

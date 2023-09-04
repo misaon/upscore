@@ -14,6 +14,7 @@ export const useMonitoredResourcesStore = defineStore('monitoredResources', () =
 
   const fetchMonitoredResources = async () => {
     const result = await useFetch<MonitoredResourceDto[]>('/api/monitored-resources');
+
     monitoredResources.value = result.data.value || [];
   };
 
@@ -30,7 +31,7 @@ export const useMonitoredResourcesStore = defineStore('monitoredResources', () =
     return data;
   };
 
-  const addMonitoredResource = async (formData: MonitoredResourcePostDto) => {
+  const createMonitoredResource = async (formData: MonitoredResourcePostDto) => {
     const { data, error } = await useFetch<MonitoredResourceDto>('/api/monitored-resources', {
       method: 'POST',
       body: formData,
@@ -45,13 +46,33 @@ export const useMonitoredResourcesStore = defineStore('monitoredResources', () =
       t('notification.success.entityCreated', { entity: t('entity.monitoredResource') }),
       'success'
     );
+
     monitoredResources.value.push(data.value);
+  };
+
+  const deleteMonitoredResource = async (uuid: string) => {
+    const { error } = await useFetch<MonitoredResourceDto>(`/api/monitored-resources/${uuid}`, {
+      method: 'DELETE',
+    });
+
+    if (error.value) {
+      notifyStore.notify(t('notification.error.some'), 'error');
+      return;
+    }
+
+    notifyStore.notify(
+      t('notification.success.entityCreated', { entity: t('entity.monitoredResource') }),
+      'success'
+    );
+
+    monitoredResources.value = monitoredResources.value.filter((item) => item.uuid !== uuid);
   };
 
   return {
     monitoredResources,
     fetchMonitoredResources,
     getMonitoredResource,
-    addMonitoredResource,
+    createMonitoredResource,
+    deleteMonitoredResource,
   };
 });

@@ -1,6 +1,7 @@
 import {
   IsNotEmpty,
   IsUrl,
+  IsUUID,
   IsBoolean,
   IsNumber,
   IsOptional,
@@ -18,6 +19,12 @@ export class MonitoredResourceDto implements IMonitoredResource {
   isFavourite!: boolean;
   createDate!: Date;
   updateDate!: Date;
+}
+
+export class MonitoredResourceGetDto implements Pick<IMonitoredResource, 'uuid'> {
+  @IsNotEmpty()
+  @IsUUID()
+  uuid!: string;
 }
 
 export class MonitoredResourcePostDto
@@ -38,3 +45,5 @@ export class MonitoredResourcePostDto
   @IsBoolean()
   isFavourite?: boolean;
 }
+
+export class MonitoredResourceDeleteDto extends MonitoredResourceGetDto {}

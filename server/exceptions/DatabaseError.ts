@@ -1,3 +1,4 @@
+export const ERROR_NOT_FOUND = 'ERROR_NOT_FOUND';
 export const ERROR_UNIQUE = 'ERROR_UNIQUE';
 
 export class DatabaseError extends Error {
